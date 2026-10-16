@@ -1,0 +1,108 @@
+/* Border box declaration 
+https://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
+html {
+  box-sizing: border-box;
+}
+
+/* inherit border-box on all elements in the universe and before and after */
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Arial, Geneva, sans-serif;
+}
+
+a {
+  color: #2772B0;
+}
+
+.wrapper {
+  width: 97%;
+  max-width: 1200px;
+  margin: 0 auto;
+  float: none;
+  background-color: #fff;
+}
+
+div img {
+  width: 100%;
+  max-width: 225px; 
+}
+
+/* Add background colors to see how much space each column is taking */
+.col-1 { background-color: #A3CDD9; }
+.col-2 { background-color: #FFFCE6; }
+.col-3 { background-color: #c7b47b; }
+.col-4 { background-color: #8ef093; }
+.col-5 { background-color: #c1b6ff; }
+
+.row {
+  display: grid;
+  gap: 20px; /* Kept for layout, but removed the "new property" comments since it was covered in lecture */
+  grid-template-columns: 1fr;
+  margin-bottom: 40px;
+}
+
+
+@media only screen and (min-width: 480px) {
+  
+  .row:nth-child(1) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .row:nth-child(2) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .row:nth-child(5) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "middle middle"
+      "left right";
+  }
+
+  .order-item-1 { grid-area: left; }
+  .order-item-2 { grid-area: middle; }
+  .order-item-3 { grid-area: right; }
+
+  .row:nth-child(6) {
+    
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+}
+
+
+@media only screen and (min-width: 768px) {
+  
+  .row:nth-child(1) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .row:nth-child(2) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .row:nth-child(3) {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .row:nth-child(5) {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "left middle right";
+  }
+
+  .row:nth-child(6) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .col-5 {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  .col-5:hover {
+    transform: translateY(-5px); 
+    background-color: #d8b4e2;
+  }
+
+}
