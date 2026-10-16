@@ -37,14 +37,17 @@ div img {
 .col-4 { background-color: #8ef093; }
 .col-5 { background-color: #c1b6ff; }
 
+
+/* GRID SYSTEM -- MOBILE FIRST */
 .row {
   display: grid;
-  gap: 20px; /* Kept for layout, but removed the "new property" comments since it was covered in lecture */
+  gap: 20px;
   grid-template-columns: 1fr;
   margin-bottom: 40px;
 }
 
 
+/* TABLET LANDSCAPE SCREEN SIZES */
 @media only screen and (min-width: 480px) {
   
   .row:nth-child(1) {
@@ -56,6 +59,10 @@ div img {
   }
 
   .row:nth-child(5) {
+    
+    /* NEW PROPERTY 2: grid-template-areas */
+    /* MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas */
+    /* How it works: Allows you to visually name grid zones. By mapping the middle item to span across both columns on the top row, it replaces the need for the Flexbox 'order' property. */
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 
       "middle middle"
@@ -68,31 +75,43 @@ div img {
 
   .row:nth-child(6) {
     
+    /* NEW PROPERTY 3: repeat(auto-fit, minmax()) */
+    /* MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/minmax */
+    /* How it works: Automatically fits as many columns as possible that are at least 180px wide, stretching them evenly to fill the row on mid-sized screens. */
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
 
 }
 
 
+/* DESKTOP SCREEN SIZES */
 @media only screen and (min-width: 768px) {
   
+  /* Row 1: 4 Columns */
   .row:nth-child(1) {
     grid-template-columns: repeat(4, 1fr);
   }
 
+  /* Row 2: 2 Columns */
   .row:nth-child(2) {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Row 3: Narrow left column, wide right column */
   .row:nth-child(3) {
+    /* Uses fractional (fr) units to make the right side roughly 3 times larger than the left */
     grid-template-columns: 1fr 3fr;
   }
 
+  /* Row 4: 1 Column (inherits 1fr from mobile naturally) */
+  
+  /* Row 5: 1-2-1 layout restored to normal visual order */
   .row:nth-child(5) {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas: "left middle right";
   }
 
+  /* Row 6: 5 equal Columns */
   .row:nth-child(6) {
     grid-template-columns: repeat(5, 1fr);
   }
